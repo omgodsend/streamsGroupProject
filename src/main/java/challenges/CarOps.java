@@ -16,6 +16,68 @@ public class CarOps {
                 .filter(car -> car.getMake().equalsIgnoreCase("Ford"))
                 .collect(Collectors.toList());
     }
+
+//   22: Filter by Year: Filter the list of cars to only include cars from a specific year.
+    public static List<Car> carWithSpecificYear(List<Car> cars){
+        return cars.stream()
+                .filter(car -> car.getYear() == 2010)
+                .collect(Collectors.toList());
+    }
+
+    //23: Filter by Price: Filter the list of cars to only include cars within a price range.
+    public static List<Car> carWithSpecificPriceRange(List<Car> cars){
+        return cars.stream()
+                .filter(car -> car.getPrice() > 10000 && car.getPrice() < 20000)
+                .collect(Collectors.toList());
+    }
+
+    //24:Map to Model Names: Create a list of car model names from the list of cars.
+    public static List<String> carModelNames(List<Car> cars){
+        return cars.stream()
+                .map(Car::getModel)
+                .collect(Collectors.toList());
+    }
+
+    //25:Map to Upper Case Makes: Create a list of car makes in uppercase from the list of cars.
+    public static List<String> carMakeInUpperCase(List<Car> cars){
+        return cars.stream()
+                .map(Car::getMake)
+                .map(String::toUpperCase)
+                .toList();
+    }
+
+    //26:Sort by Year: Sort the list of cars based on the year in ascending order.
+    public static List<Car> sortCarByYear(List<Car> cars){
+        return cars.stream()
+                .sorted(Comparator.comparingInt(Car::getYear))
+                .collect(Collectors.toList());
+    }
+
+    //27:Sort by Price (descending): Sort the list of cars based on the price in descending order.
+    public static List<Car> sortCarByPriceDescending(List<Car> cars){
+        return cars.stream()
+                .sorted(Comparator.comparingDouble(Car::getPrice).reversed())
+                .collect(Collectors.toList());
+    }
+
+    //28:Get the Highest Priced Car: Find the car with the highest price.
+    public static Optional<Car> getTheHighestPricedCar(List<Car> cars){
+        return cars.stream()
+                .max(Comparator.comparingDouble(Car::getPrice));
+    }
+
+    //29:Get the Lowest Priced Car: Find the car with the lowest price.
+    public static Optional<Car> getTheLowestPricedCar(List<Car> cars){
+        return cars.stream()
+                .min(Comparator.comparingDouble(Car::getPrice));
+    }
+
+    //30: Group by Make: Group the cars by their make.
+    public static Map<String, List<Car>> groupCarByMake(List<Car> cars){
+        return cars.stream()
+                .collect(Collectors.groupingBy(Car::getMake));
+    }
+
     //31. Count Cars by Make: Count the number of cars for each make.
     public static Map<String, Long> countCarsByMake (List<Car> cars){
         return cars.stream()

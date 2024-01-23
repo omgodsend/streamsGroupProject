@@ -2,6 +2,7 @@ package domain;
 import java.time.LocalDate;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Student {
 
@@ -47,7 +48,7 @@ public class Student {
     }
 
     public int getAge() {
-        return age; // Getter for age
+        return Period.between(dob,LocalDate.now()).getYears(); // dGetter for age
     }
 
     public void setAge(int age) {
@@ -64,6 +65,9 @@ public class Student {
                 ", gender='" + gender + '\'' +
                 ", dob=" + dob +
                 '}';
+    }
+
+    public void setFullName(String fullName) {
     }
 }
 

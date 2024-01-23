@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,6 +39,14 @@ public class StudentOpsTest {
             List<Student> filteredStudents = StudentOps.filterStudentsByGender(students, "Female");
             assertEquals("Female",filteredStudents.get(5).getGender());
         }
+
+        @Test
+        void shouldReturnYoungestFemale(){
+            Optional<Student> filteredStudents = StudentOps.youngestFemale(students);
+            assertEquals(17,filteredStudents.get().getAge());
+
+        }
+
 
     }
 
